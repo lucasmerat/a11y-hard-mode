@@ -67,7 +67,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         state,
         isTimerActive,
         incrementFriction,
-        startGlobalTimer: () => activeLevel && startGlobalTimer(activeLevel),
+        startGlobalTimer: (level: keyof GameState) => startGlobalTimer(level),
         stopGlobalTimer,
         resetGame
       }}

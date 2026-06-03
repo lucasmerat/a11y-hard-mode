@@ -13,7 +13,7 @@ export type GameContextType = {
   state: GameState;
   isTimerActive: boolean;
   incrementFriction: (level: keyof GameState) => void;
-  startGlobalTimer: () => void;
+  startGlobalTimer: (level: keyof GameState) => void;
   stopGlobalTimer: () => void;
   resetGame: () => void;
 }
