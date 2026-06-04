@@ -11,11 +11,12 @@ const isTest = Boolean(process.env.VITEST);
 
 const config = defineConfig({
   plugins: [
-    !isTest && devtools(),
-    !isTest && nitro(),
-    tailwindcss(),
     !isTest && tanstackStart(),
+    !isTest && nitro(),
+    isTest && viteReact(),
     viteReact(),
+    tailwindcss(),
+    !isTest && devtools(),
   ].filter(Boolean),
   test: {
     globals: true,
