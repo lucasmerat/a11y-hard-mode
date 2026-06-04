@@ -1,5 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import type { GameContextType, GameState, LevelData } from '../types/GameContext'
+import { useMatches } from '@tanstack/react-router';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import type { GameContextType, GameState, LevelData } from '#/types/GameContext'
 
 
 const initialLevelDate: LevelData = { timeElapsed: 0, frictionEvents: 0 }
@@ -15,21 +16,21 @@ const GameContext = createContext<GameContextType | undefined>(undefined)
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState>(initialGameState)
   const [isTimerActive, setIsTimerActive] = useState(false)
-  const [activeLevel, setActiveLevel] = useState<keyof GameState | null>()
 
-  const startGlobalTimer = useCallback((level: keyof GameState) => {
-    setIsTimerActive(true)
-    setActiveLevel(level)
-  }, [])
+  const matches = useMatches()
 
-  const stopGlobalTimer = useCallback(() => {
-    setIsTimerActive(false);
-  }, []);
+  const activeLevel = useMemo(() => {
+    const currentRouteId = matches[matches.length - 1]?.routeId
+
+    if (currentRouteId === '/levels/1') return 'level1'
+    if (currentRouteId === '/levels/2') return 'level2'
+    if (currentRouteId === '/levels/3') return 'level3'
+    return null
+  }, [matches])
 
   const resetGame = useCallback(() => {
     setState(initialGameState);
     setIsTimerActive(false);
-    setActiveLevel(null);
   }, []);
 
   const incrementFriction = useCallback((level: keyof GameState) => {
@@ -46,7 +47,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!isTimerActive || !activeLevel) return;
+    if (!activeLevel) return;
 
     const interval = setInterval(() => {
       setState((prev) => ({
@@ -59,16 +60,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }, 100);
 
     return () => clearInterval(interval);
-  });
+  }, [activeLevel]);
 
   return (
     <GameContext.Provider
       value={{
+        activeLevel,
         state,
         isTimerActive,
         incrementFriction,
-        startGlobalTimer: (level: keyof GameState) => startGlobalTimer(level),
-        stopGlobalTimer,
         resetGame
       }}
     >
