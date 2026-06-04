@@ -43,7 +43,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="font-mono antialiased [overflow-wrap:anywhere] flex flex-col min-h-screen bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-[size:4rem_4rem]">
         <GameProvider>
           <LanguageSelect />
-          {children}
+          <main className="flex flex-col justify-center items-center flex-grow">
+            {children}
+          </main>
           <Footer />
           <TanStackDevtools
             config={{
