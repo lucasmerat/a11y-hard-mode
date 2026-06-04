@@ -1,6 +1,6 @@
-import { formatTime } from "../../lib/helpers/formatTime";
+import { formatTime } from "#/lib/helpers/formatTime";
 import { useGame } from "./GameContext";
-import { levelCopy, frictionEventCopy } from "../../lib/constants/copy.ts";
+import { levelCopy, frictionEventCopy } from "#/lib/constants/copy";
 
 export default function GameHud() {
   const gameContext = useGame();
