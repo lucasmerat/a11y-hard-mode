@@ -9,7 +9,7 @@ function Landing() {
         a11y hard mode
       </h1>
       <p className="mb-10 max-w-[44rem] text-lg text-center">This is what the web feels like when it’s not built for you. Three levels. Three barriers. Can you reach the end?</p>
-      <Link to="/levels/1" className="text-sm px-6 py-3 border border-teal-700 bg-transparent text-teal-300 rounded hover:bg-teal-200 hover:text-zinc-950 hover:border-zinc-950 transition-all duration-300 ease-in-out">Start the gauntlet <span className="inline-block">→</span></Link>
+      <Link to="/levels/1" className="hover:animate-tremor text-sm px-6 py-3 border border-teal-700 bg-transparent text-teal-300 rounded hover:bg-teal-200 hover:text-zinc-950 hover:border-zinc-950 transition-all duration-300 ease-in-out">Start the gauntlet <span className="inline-block">→</span></Link>
     </>
   )
 }

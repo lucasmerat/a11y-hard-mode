@@ -4,6 +4,31 @@
 
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --animate-tremor: tremor 0.4s ease-in-out infinite;
+}
+
+@keyframes tremor {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  20% {
+    transform: translate(-5px, 1px) rotate(-0.7deg);
+  }
+
+  40% {
+    transform: translate(5px, -1px) rotate(0.7deg);
+  }
+
+  60% {
+    transform: translate(-5px, -5px) rotate(-0.6deg);
+  }
+
+  80% {
+    transform: translate(5px, 5px) rotate(0.6deg);
+  }
 }
 
 :root {
