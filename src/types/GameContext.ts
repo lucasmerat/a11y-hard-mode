@@ -12,7 +12,6 @@ export type GameState = {
 export type GameContextType = {
   activeLevel: keyof GameState | null | undefined;
   state: GameState;
-  isTimerActive: boolean;
   incrementFriction: (level: keyof GameState) => void;
   resetGame: () => void;
 }

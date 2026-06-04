@@ -15,7 +15,6 @@ const GameContext = createContext<GameContextType | undefined>(undefined)
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState>(initialGameState)
-  const [isTimerActive, setIsTimerActive] = useState(false)
 
   const matches = useMatches()
 
@@ -30,7 +29,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const resetGame = useCallback(() => {
     setState(initialGameState);
-    setIsTimerActive(false);
   }, []);
 
   const incrementFriction = useCallback((level: keyof GameState) => {
@@ -67,7 +65,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       value={{
         activeLevel,
         state,
-        isTimerActive,
         incrementFriction,
         resetGame
       }}
