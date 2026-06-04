@@ -5,14 +5,11 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import { nitro } from 'nitro/vite'
-
 const isTest = Boolean(process.env.VITEST);
 
 const config = defineConfig({
   plugins: [
     !isTest && tanstackStart(),
-    !isTest && nitro(),
     viteReact(),
     tailwindcss(),
     !isTest && devtools(),
