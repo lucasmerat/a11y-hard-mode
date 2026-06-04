@@ -1,4 +1,3 @@
 node_modules/
 .git/
 .nitro/
-.output/server/

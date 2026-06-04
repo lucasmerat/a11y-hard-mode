@@ -13,7 +13,6 @@ const config = defineConfig({
   plugins: [
     !isTest && tanstackStart(),
     !isTest && nitro(),
-    isTest && viteReact(),
     viteReact(),
     tailwindcss(),
     !isTest && devtools(),
