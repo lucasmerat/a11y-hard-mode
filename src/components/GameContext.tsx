@@ -3,12 +3,16 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import type { GameContextType, GameState, LevelData } from '#/types/GameContext'
 
 
-const initialLevelDate: LevelData = { timeElapsed: 0, frictionEvents: 0 }
+const initialLevelData: LevelData = {
+  timeElapsed: 0,
+  frictionEvents: 0,
+  completed: false,
+}
 
 const initialGameState: GameState = {
-  level1: { ...initialLevelDate },
-  level2: { ...initialLevelDate },
-  level3: { ...initialLevelDate },
+  level1: { ...initialLevelData },
+  level2: { ...initialLevelData },
+  level3: { ...initialLevelData },
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined)
@@ -32,33 +36,46 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const incrementFriction = useCallback((level: keyof GameState) => {
-    setState((prev) => {
-
-      return {
-        ...prev,
-        [level]: {
-          ...prev[level],
-          frictionEvents: prev[level].frictionEvents + 1,
-        },
-      };
-    })
+    setState((prev) => ({
+      ...prev,
+      [level]: {
+        ...prev[level],
+        frictionEvents: prev[level].frictionEvents + 1,
+      },
+    }))
   }, []);
 
+  const completeLevel = useCallback((level: keyof GameState) => {
+    setState((prev) => ({
+      ...prev,
+      [level]: {
+        ...prev[level],
+        completed: true,
+      },
+    }))
+  }, []);
+
+  const activeLevelCompleted =
+    activeLevel != null ? state[activeLevel].completed : false
+
   useEffect(() => {
-    if (!activeLevel) return;
+    if (!activeLevel || activeLevelCompleted) return
 
     const interval = setInterval(() => {
-      setState((prev) => ({
-        ...prev,
-        [activeLevel]: {
-          ...prev[activeLevel],
-          timeElapsed: prev[activeLevel].timeElapsed + 100
+      setState((prev) => {
+        if (prev[activeLevel].completed) return prev
+        return {
+          ...prev,
+          [activeLevel]: {
+            ...prev[activeLevel],
+            timeElapsed: prev[activeLevel].timeElapsed + 100,
+          },
         }
-      }));
-    }, 100);
+      })
+    }, 100)
 
-    return () => clearInterval(interval);
-  }, [activeLevel]);
+    return () => clearInterval(interval)
+  }, [activeLevel, activeLevelCompleted]);
 
   return (
     <GameContext.Provider
@@ -66,6 +83,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         activeLevel,
         state,
         incrementFriction,
+        completeLevel,
         resetGame
       }}
     >

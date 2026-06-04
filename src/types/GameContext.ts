@@ -1,6 +1,7 @@
 export type LevelData = {
   timeElapsed: number;
   frictionEvents: number;
+  completed: boolean;
 }
 
 export type GameState = {
@@ -13,5 +14,6 @@ export type GameContextType = {
   activeLevel: keyof GameState | null | undefined;
   state: GameState;
   incrementFriction: (level: keyof GameState) => void;
+  completeLevel: (level: keyof GameState) => void;
   resetGame: () => void;
 }

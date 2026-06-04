@@ -59,4 +59,18 @@ describe('GameContext', () => {
 
     expect(result.current.state.level1.frictionEvents).toBe(0)
   })
+
+  it('should stop the timer when completeLevel is called', () => {
+    vi.mocked(useMatches).mockReturnValue([{ routeId: '/levels/1' } as any])
+    const { result } = renderHook(() => useGame(), { wrapper })
+
+    act(() => {
+      vi.advanceTimersByTime(500)
+      result.current.completeLevel('level1')
+      vi.advanceTimersByTime(1000)
+    })
+
+    expect(result.current.state.level1.completed).toBe(true)
+    expect(result.current.state.level1.timeElapsed).toBe(500)
+  })
 })
