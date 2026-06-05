@@ -5,6 +5,7 @@
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --animate-tremor: tremor 0.4s ease-in-out infinite;
+  --animate-tremor-once: tremor 0.3s ease-in-out 1;
 }
 
 @keyframes tremor {

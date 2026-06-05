@@ -9,48 +9,40 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LevelsRouteImport } from './routes/levels'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Levels3RouteImport } from './routes/levels/3'
 import { Route as Levels2RouteImport } from './routes/levels/2'
 import { Route as Levels1RouteImport } from './routes/levels/1'
 
-const LevelsRoute = LevelsRouteImport.update({
-  id: '/levels',
-  path: '/levels',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Levels3Route = Levels3RouteImport.update({
-  id: '/3',
-  path: '/3',
-  getParentRoute: () => LevelsRoute,
+  id: '/levels/3',
+  path: '/levels/3',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const Levels2Route = Levels2RouteImport.update({
-  id: '/2',
-  path: '/2',
-  getParentRoute: () => LevelsRoute,
+  id: '/levels/2',
+  path: '/levels/2',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const Levels1Route = Levels1RouteImport.update({
-  id: '/1',
-  path: '/1',
-  getParentRoute: () => LevelsRoute,
+  id: '/levels/1',
+  path: '/levels/1',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/levels': typeof LevelsRouteWithChildren
   '/levels/1': typeof Levels1Route
   '/levels/2': typeof Levels2Route
   '/levels/3': typeof Levels3Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/levels': typeof LevelsRouteWithChildren
   '/levels/1': typeof Levels1Route
   '/levels/2': typeof Levels2Route
   '/levels/3': typeof Levels3Route
@@ -58,33 +50,27 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/levels': typeof LevelsRouteWithChildren
   '/levels/1': typeof Levels1Route
   '/levels/2': typeof Levels2Route
   '/levels/3': typeof Levels3Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/levels' | '/levels/1' | '/levels/2' | '/levels/3'
+  fullPaths: '/' | '/levels/1' | '/levels/2' | '/levels/3'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/levels' | '/levels/1' | '/levels/2' | '/levels/3'
-  id: '__root__' | '/' | '/levels' | '/levels/1' | '/levels/2' | '/levels/3'
+  to: '/' | '/levels/1' | '/levels/2' | '/levels/3'
+  id: '__root__' | '/' | '/levels/1' | '/levels/2' | '/levels/3'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  LevelsRoute: typeof LevelsRouteWithChildren
+  Levels1Route: typeof Levels1Route
+  Levels2Route: typeof Levels2Route
+  Levels3Route: typeof Levels3Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/levels': {
-      id: '/levels'
-      path: '/levels'
-      fullPath: '/levels'
-      preLoaderRoute: typeof LevelsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -94,46 +80,33 @@ declare module '@tanstack/react-router' {
     }
     '/levels/3': {
       id: '/levels/3'
-      path: '/3'
+      path: '/levels/3'
       fullPath: '/levels/3'
       preLoaderRoute: typeof Levels3RouteImport
-      parentRoute: typeof LevelsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/levels/2': {
       id: '/levels/2'
-      path: '/2'
+      path: '/levels/2'
       fullPath: '/levels/2'
       preLoaderRoute: typeof Levels2RouteImport
-      parentRoute: typeof LevelsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/levels/1': {
       id: '/levels/1'
-      path: '/1'
+      path: '/levels/1'
       fullPath: '/levels/1'
       preLoaderRoute: typeof Levels1RouteImport
-      parentRoute: typeof LevelsRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface LevelsRouteChildren {
-  Levels1Route: typeof Levels1Route
-  Levels2Route: typeof Levels2Route
-  Levels3Route: typeof Levels3Route
-}
-
-const LevelsRouteChildren: LevelsRouteChildren = {
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   Levels1Route: Levels1Route,
   Levels2Route: Levels2Route,
   Levels3Route: Levels3Route,
-}
-
-const LevelsRouteWithChildren =
-  LevelsRoute._addFileChildren(LevelsRouteChildren)
-
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  LevelsRoute: LevelsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

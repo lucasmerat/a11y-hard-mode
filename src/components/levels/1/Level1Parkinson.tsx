@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 import { useGame } from '#/components/GameContext'
-import ParkinsonCursor from '#/components/ParkinsonCursor'
+import ParkinsonCursor from '#/components/levels/1/ParkinsonCursor'
 import { useLevel1ClickHandling } from '#/hooks/useLevel1ClickHandling'
 import { useParkinsonVisualPointer } from '#/hooks/useParkinsonVisualPointer'
 import { level1TermsParagraphs } from '#/lib/constants/level1Terms'
@@ -58,7 +58,7 @@ export default function Level1Parkinson() {
               checked={agreed}
               readOnly
               tabIndex={-1}
-              className="size-2 shrink-0 appearance-none rounded-[2px] border border-teal-500 bg-zinc-950 checked:border-teal-300 checked:bg-teal-500 focus:outline-none disabled:opacity-60"
+              className="size-[9px] shrink-0 appearance-none rounded-[2px] border border-teal-500 bg-zinc-950 checked:border-teal-300 checked:bg-teal-500 focus:outline-none disabled:opacity-60"
               aria-label="I agree to the terms and conditions"
             />
             {/* Intentionally not a <label> — clicking text does not toggle the box. */}
