@@ -1,7 +1,7 @@
-import { useMatches } from '@tanstack/react-router';
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import type { GameContextType, GameState, LevelData } from '#/types/GameContext'
-
+import type { GameState, LevelData } from "#/types/GameContext"
+import { useMatches } from "@tanstack/react-router"
+import { useCallback, useEffect, useMemo, useState } from "react"
+import { GameContext } from "./context"
 
 const initialLevelData: LevelData = {
   timeElapsed: 0,
@@ -14,8 +14,6 @@ const initialGameState: GameState = {
   level2: { ...initialLevelData },
   level3: { ...initialLevelData },
 };
-
-const GameContext = createContext<GameContextType | undefined>(undefined)
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState>(initialGameState)
@@ -90,12 +88,4 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       {children}
     </GameContext.Provider>
   )
-}
-
-export function useGame() {
-  const context = useContext(GameContext);
-  if (!context) {
-    throw new Error('useGame must be used within a GameProvider');
-  }
-  return context;
 }

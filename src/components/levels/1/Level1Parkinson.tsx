@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react'
-import { useGame } from '#/components/GameContext'
+import { useGame } from '#/context/game/useGame'
 import ParkinsonCursor from '#/components/levels/1/ParkinsonCursor'
 import { useLevel1ClickHandling } from '#/hooks/useLevel1ClickHandling'
 import { useParkinsonVisualPointer } from '#/hooks/useParkinsonVisualPointer'

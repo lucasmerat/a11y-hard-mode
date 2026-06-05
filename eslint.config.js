@@ -26,12 +26,6 @@ export default tseslint.config(
     plugins: {
       'react-refresh': reactRefresh,
     },
-    rules: {
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
   },
   {
     files: ['**/*.test.{ts,tsx}'],

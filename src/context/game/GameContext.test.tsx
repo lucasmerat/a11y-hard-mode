@@ -1,7 +1,8 @@
 import { renderHook, act } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { GameProvider, useGame } from './GameContext'
+import { useGame } from './useGame'
 import { useMatches } from '@tanstack/react-router'
+import { GameProvider } from './GameProvider'
 
 vi.mock('@tanstack/react-router', () => ({
   useMatches: vi.fn(),
@@ -22,6 +23,7 @@ describe('GameContext', () => {
   )
 
   it('should increment timeElapsed when a level is active', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(useMatches).mockReturnValue([{ routeId: '/levels/1' } as any])
 
     const { result } = renderHook(() => useGame(), { wrapper })
@@ -37,6 +39,7 @@ describe('GameContext', () => {
   })
 
   it('should correctly increment friction events for a specific level', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(useMatches).mockReturnValue([{ routeId: '/levels/1' } as any])
     const { result } = renderHook(() => useGame(), { wrapper })
 
@@ -49,6 +52,7 @@ describe('GameContext', () => {
   })
 
   it('should reset the game state', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(useMatches).mockReturnValue([{ routeId: '/levels/1' } as any])
     const { result } = renderHook(() => useGame(), { wrapper })
 
@@ -61,6 +65,7 @@ describe('GameContext', () => {
   })
 
   it('should stop the timer when completeLevel is called', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(useMatches).mockReturnValue([{ routeId: '/levels/1' } as any])
     const { result } = renderHook(() => useGame(), { wrapper })
 

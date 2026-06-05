@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import GameHud from './GameHud'
-import { GameProvider } from './GameContext'
+import { GameProvider } from '../context/game/useGame'
 import { useMatches } from '@tanstack/react-router'
 
 vi.mock('@tanstack/react-router', () => ({

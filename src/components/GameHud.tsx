@@ -1,5 +1,5 @@
 import { formatTime } from "#/lib/helpers/formatTime";
-import { useGame } from "./GameContext";
+import { useGame } from "../context/game/useGame";
 import { LEVEL_TITLES, FRICTION_EVENT_TITLES } from "#/lib/constants/copy";
 
 export default function GameHud() {

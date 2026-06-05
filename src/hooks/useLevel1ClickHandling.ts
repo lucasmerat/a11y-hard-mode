@@ -76,6 +76,7 @@ export function useLevel1ClickHandling({
     active,
     visualPointerRef,
     checkboxRef,
+    quitButtonRef,
     scrollAreaRef,
     onWinLevel1,
     onMisclick,
