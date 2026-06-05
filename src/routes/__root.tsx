@@ -45,7 +45,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <GameProvider>
           <div className="flex justify-between items-start py-4 px-8">
             <GameHud />
-            <LanguageSelect />
+            <LanguageSelect className="ml-auto shrink-0" />
           </div>
           <main className="flex flex-col justify-center items-center flex-grow">
             {children}

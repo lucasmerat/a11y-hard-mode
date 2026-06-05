@@ -13,7 +13,7 @@ import {
  * - real pointer (from the OS)
  * - visual cursor (real + tremor) — used to draw the arrow and to score clicks
  */
-export function useParkinsonVisualPointer() {
+export function useParkinsonVisualPointer({ enabled }: { enabled: boolean }) {
   const realPointerRef = useRef<Point>({ x: 0, y: 0 })
   const tremorOffsetRef = useRef<Point>({ x: 0, y: 0 })
   /** Same as `visual` state; ref so click handlers always read the latest coords. */
@@ -41,6 +41,8 @@ export function useParkinsonVisualPointer() {
   )
 
   useEffect(() => {
+    if (!enabled) return
+
     document.body.classList.add('cursor-none')
 
     const onRealPointerMove = (event: PointerEvent) => {
@@ -62,7 +64,7 @@ export function useParkinsonVisualPointer() {
       window.removeEventListener('pointermove', onRealPointerMove)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [applyTremor])
+  }, [applyTremor, enabled])
 
   return { visualPointer, visualPointerRef }
 }

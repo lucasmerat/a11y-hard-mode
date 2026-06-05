@@ -7,8 +7,9 @@ type UseLevel1ClickHandlingOptions = {
   active: boolean
   visualPointerRef: RefObject<Point>
   checkboxRef: RefObject<HTMLInputElement | null>
+  quitButtonRef: RefObject<HTMLButtonElement | null>
   scrollAreaRef: RefObject<HTMLDivElement | null>
-  onCheckboxHit: () => void
+  onWinLevel1: () => void
   onMisclick: () => void
 }
 
@@ -28,8 +29,9 @@ export function useLevel1ClickHandling({
   active,
   visualPointerRef,
   checkboxRef,
+  quitButtonRef,
   scrollAreaRef,
-  onCheckboxHit,
+  onWinLevel1,
   onMisclick,
 }: UseLevel1ClickHandlingOptions) {
   useEffect(() => {
@@ -47,9 +49,17 @@ export function useLevel1ClickHandling({
       const { x, y } = visualPointerRef.current
       const checkbox = checkboxRef.current
       if (checkbox && isPointInsideElement(x, y, checkbox)) {
-        onCheckboxHit()
+        onWinLevel1()
         return
       }
+
+      const quitButtonClicked = quitButtonRef.current && event.target === quitButtonRef.current
+
+      if (quitButtonClicked) {
+        onWinLevel1()
+        return
+      }
+
       onMisclick()
     }
 
@@ -67,7 +77,7 @@ export function useLevel1ClickHandling({
     visualPointerRef,
     checkboxRef,
     scrollAreaRef,
-    onCheckboxHit,
+    onWinLevel1,
     onMisclick,
   ])
 }

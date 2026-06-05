@@ -1,21 +1,22 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useRef } from 'react'
 import { useGame } from '#/components/GameContext'
 import ParkinsonCursor from '#/components/levels/1/ParkinsonCursor'
 import { useLevel1ClickHandling } from '#/hooks/useLevel1ClickHandling'
 import { useParkinsonVisualPointer } from '#/hooks/useParkinsonVisualPointer'
 import { level1TermsParagraphs } from '#/lib/constants/level1Terms'
 import { LEVELS_IDS } from '#/lib/constants/levels'
+import WinModal from '#/components/WinModal'
 
 export default function Level1Parkinson() {
   const { incrementFriction, completeLevel } = useGame()
-  const [agreed, setAgreed] = useState(false)
+  const level1Completed = useGame().state.level1.completed
 
   const checkboxRef = useRef<HTMLInputElement>(null)
+  const quitButtonRef = useRef<HTMLButtonElement>(null)
   const scrollAreaRef = useRef<HTMLDivElement>(null)
-  const { visualPointer, visualPointerRef } = useParkinsonVisualPointer()
+  const { visualPointer, visualPointerRef } = useParkinsonVisualPointer({ enabled: !level1Completed })
 
-  const onCheckboxHit = useCallback(() => {
-    setAgreed(true)
+  const onWinLevel1 = useCallback(() => {
     completeLevel(LEVELS_IDS.LEVEL_1)
   }, [completeLevel])
 
@@ -24,17 +25,18 @@ export default function Level1Parkinson() {
   }, [incrementFriction])
 
   useLevel1ClickHandling({
-    active: !agreed,
+    active: !level1Completed,
     visualPointerRef,
     checkboxRef,
+    quitButtonRef,
     scrollAreaRef,
-    onCheckboxHit,
+    onWinLevel1,
     onMisclick,
   })
 
   return (
     <>
-      <ParkinsonCursor x={visualPointer.x} y={visualPointer.y} />
+      {!level1Completed && <ParkinsonCursor x={visualPointer.x} y={visualPointer.y} />}
 
       <div className="pointer-events-none flex w-full max-w-2xl flex-col px-4">
         <div className="flex max-h-[70vh] flex-col overflow-hidden rounded border border-teal-800/60 bg-zinc-950/40">
@@ -55,10 +57,10 @@ export default function Level1Parkinson() {
             <input
               ref={checkboxRef}
               type="checkbox"
-              checked={agreed}
-              readOnly
               tabIndex={-1}
-              className="size-[9px] shrink-0 appearance-none rounded-[2px] border border-teal-500 bg-zinc-950 checked:border-teal-300 checked:bg-teal-500 focus:outline-none disabled:opacity-60"
+              checked={level1Completed}
+              readOnly
+              className="pointer-events-auto size-[9px] shrink-0 appearance-none rounded-[2px] border border-teal-500 bg-zinc-950 checked:border-teal-300 checked:bg-teal-500 focus:outline-none disabled:opacity-60"
               aria-label="I agree to the terms and conditions"
             />
             {/* Intentionally not a <label> — clicking text does not toggle the box. */}
@@ -68,11 +70,9 @@ export default function Level1Parkinson() {
           </div>
         </div>
 
-        {agreed && (
-          <p className="mt-4 text-center text-sm text-teal-400" role="status">
-            You made it.
-          </p>
-        )}
+        {level1Completed && <WinModal />}
+
+        <button ref={quitButtonRef} className="pointer-events-auto" onClick={() => completeLevel(LEVELS_IDS.LEVEL_1)}>Complete Level</button>
       </div>
     </>
   )
