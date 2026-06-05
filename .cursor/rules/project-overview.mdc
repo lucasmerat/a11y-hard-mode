@@ -1,0 +1,36 @@
+---
+alwaysApply: true
+---
+
+# a11y hard mode
+
+A game that teaches web accessibility by simulating intentionally inaccessible UX. Players complete 3 levels, each demonstrating a different real-world barrier.
+
+**Intentional WCAG violations are by design.** Do not "fix" them. Examples: 10×10px checkbox, `<span>` instead of `<label>`, hidden system cursor, broken pointer hit-testing.
+
+## Stack
+- React 19 + TypeScript, TanStack Start (SSR), TanStack Router (file routes), Tailwind v4
+- Path alias: `#/` → `src/`
+- Tests: Vitest + Testing Library (`pnpm test`)
+- Lint: ESLint with `react-hooks/exhaustive-deps` (`pnpm lint`)
+
+## File structure
+
+- src/ routes/ : TanStack file routes — each file exports Route, not a bare component components/ levels/1/ 
+
+- src/components/levels : Level (route)-specific components
+- context/game/ : GameProvider, useGame hook, context instance (split into 3 files) 
+- hooks/ : Shared hooks (useParkinsonVisualPointer, useLevel1ClickHandling)
+- lib/ : Constants, helpers, game math 
+- types/ : Shared TS types
+
+## Game state (GameContext)
+
+Each level tracks `{ timeElapsed, frictionEvents, completed }`.  
+- `activeLevel` is derived from the current route via `useMatches()`  
+- Timer stops when `completed: true`  
+- `incrementFriction(level)` — misclick / other error counter  
+- `completeLevel(level)` — one-way, stops timer  
+
+## Level completion
+- When a level is completed a win modal is shown, describing to the user why the pattern was not accessible, and how to improve it with code examples

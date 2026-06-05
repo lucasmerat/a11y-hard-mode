@@ -25,10 +25,13 @@ importers:
         version: 1.167.1(@tanstack/query-core@5.101.0)(@tanstack/react-query@5.101.0(react@19.2.7))(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@tanstack/router-core@1.171.9)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/react-start':
         specifier: latest
-        version: 1.168.19(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
+        version: 1.168.20(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
       '@tanstack/router-plugin':
         specifier: ^1.132.0
         version: 1.168.14(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
+      appwrite:
+        specifier: ^25.2.0
+        version: 25.2.0
       lucide-react:
         specifier: ^0.545.0
         version: 0.545.0(react@19.2.7)
@@ -821,8 +824,8 @@ packages:
       react: '>=18.0.0 || >=19.0.0'
       react-dom: '>=18.0.0 || >=19.0.0'
 
-  '@tanstack/react-start-rsc@0.1.18':
-    resolution: {integrity: sha512-pfekO3dvSLacSUW2kUJGnhfdNTo6rgQE6QjQzPaDsjUaNXT4zVWgbaqM0R6kXhwkGA69L1ZbBqtIXBwTQCrJzg==}
+  '@tanstack/react-start-rsc@0.1.19':
+    resolution: {integrity: sha512-UKUNj93NrV1gp/eAV/wvvj745sHFS6UPEL5rV2hbpU0W7IYWjzk6fOgNOKxUzFMkblT6NSAJweR7bPDV5GA5ww==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@rspack/core': '>=2.0.0-0'
@@ -845,8 +848,8 @@ packages:
       react: '>=18.0.0 || >=19.0.0'
       react-dom: '>=18.0.0 || >=19.0.0'
 
-  '@tanstack/react-start@1.168.19':
-    resolution: {integrity: sha512-UGguzD22ZdxZmz/Rcw2My/L40il/S51adm1zARclr7zkhoQfV7WlgBxjskPi5ngiOYAPlI7847Ptz8we5TSM3Q==}
+  '@tanstack/react-start@1.168.20':
+    resolution: {integrity: sha512-Z3PGRmElaFsnECzVldUoWIcYPb3FjZ1D6v01aE1jYsovs6/cjbxBL7MHagSyjuYghyt29oNKJpbsHiFDSmTSnA==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@rsbuild/core': ^2.0.0
@@ -926,8 +929,8 @@ packages:
     resolution: {integrity: sha512-QWfUZ3Yo923tdQn38LyKMU8rcTw69zc+T4dAvgTWV4O56SqFRsGfS0lSWIMhJRwXIx/bvdi7nTUBDdZtTHtpTQ==}
     engines: {node: '>=22.12.0'}
 
-  '@tanstack/start-plugin-core@1.171.11':
-    resolution: {integrity: sha512-f6z9W8lYveloSLFocMGfUrS4UL2sc0qrJiB0cuhs885W/bRE1iG0Vm9cNhM/khWxrLmWNeN5eelcnfB77QjLJg==}
+  '@tanstack/start-plugin-core@1.171.12':
+    resolution: {integrity: sha512-VRqqcVDFm17dEmR8zOt3K/+FpHRMd36jakgdqfRQy9s9VPPfv+CRwk80iHe5AnOnm0UrHCQ0RLVAmZPBwOQ8Dw==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@rsbuild/core': ^2.0.0
@@ -1138,6 +1141,10 @@ packages:
     resolution: {integrity: sha512-BJ8/l4R5LRE7hW9WdSuGYrLSHi2ynxeFpDFbH0K/CgNeY/tyhk+vO6TYxXC5r5CpUhNVX310xzPsN/H9lCdfOA==}
     engines: {node: '>=14'}
 
+  appwrite@25.2.0:
+    resolution: {integrity: sha512-N3aKpS/bnnk93Hau9+6ybyJ8VHoBD0F8a6vkaUD/i7eyHVc0+2UK9e16r+GDTiMuM7RoQ3nB/rb3gCvzpuLpKA==}
+    engines: {node: '>=18.0.0'}
+
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
@@ -1166,6 +1173,9 @@ packages:
 
   bidi-js@1.0.3:
     resolution: {integrity: sha512-RKshQI1R3YQ+n9YJz2QQ147P66ELpa1FQEg20Dk8oW9t2KgLbpDLLp9aGZ7y8WHSshDknG0bknqGw5/tyCs5tw==}
+
+  bignumber.js@9.3.1:
+    resolution: {integrity: sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ==}
 
   brace-expansion@5.0.6:
     resolution: {integrity: sha512-kLpxurY4Z4r9sgMsyG0Z9uzsBlgiU/EFKhj/h91/8yHu0edo7XuixOIH3VcJ8kkxs6/jPzoI6U9Vj3WqbMQ94g==}
@@ -1504,6 +1514,9 @@ packages:
     resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
     engines: {node: '>=6'}
     hasBin: true
+
+  json-bigint@1.0.0:
+    resolution: {integrity: sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==}
 
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
@@ -2705,7 +2718,7 @@ snapshots:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
 
-  '@tanstack/react-start-rsc@0.1.18(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))':
+  '@tanstack/react-start-rsc@0.1.19(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))':
     dependencies:
       '@tanstack/react-router': 1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/react-start-server': 1.167.14(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -2713,7 +2726,7 @@ snapshots:
       '@tanstack/router-utils': 1.162.1
       '@tanstack/start-client-core': 1.170.7
       '@tanstack/start-fn-stubs': 1.162.0
-      '@tanstack/start-plugin-core': 1.171.11(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.5(srvx@0.11.16))(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
+      '@tanstack/start-plugin-core': 1.171.12(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.5(srvx@0.11.16))(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
       '@tanstack/start-server-core': 1.169.9(crossws@0.4.5(srvx@0.11.16))
       '@tanstack/start-storage-context': 1.167.11
       pathe: 2.0.3
@@ -2739,15 +2752,15 @@ snapshots:
     transitivePeerDependencies:
       - crossws
 
-  '@tanstack/react-start@1.168.19(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))':
+  '@tanstack/react-start@1.168.20(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))':
     dependencies:
       '@tanstack/react-router': 1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/react-start-client': 1.168.8(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@tanstack/react-start-rsc': 0.1.18(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
+      '@tanstack/react-start-rsc': 0.1.19(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
       '@tanstack/react-start-server': 1.167.14(crossws@0.4.5(srvx@0.11.16))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/router-utils': 1.162.1
       '@tanstack/start-client-core': 1.170.7
-      '@tanstack/start-plugin-core': 1.171.11(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.5(srvx@0.11.16))(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
+      '@tanstack/start-plugin-core': 1.171.12(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.5(srvx@0.11.16))(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))
       '@tanstack/start-server-core': 1.169.9(crossws@0.4.5(srvx@0.11.16))
       pathe: 2.0.3
       react: 19.2.7
@@ -2846,7 +2859,7 @@ snapshots:
 
   '@tanstack/start-fn-stubs@1.162.0': {}
 
-  '@tanstack/start-plugin-core@1.171.11(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.5(srvx@0.11.16))(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))':
+  '@tanstack/start-plugin-core@1.171.12(@tanstack/react-router@1.170.11(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.5(srvx@0.11.16))(vite@8.0.16(@types/node@22.19.19)(jiti@2.7.0))':
     dependencies:
       '@babel/code-frame': 7.27.1
       '@babel/core': 7.29.7
@@ -3119,6 +3132,10 @@ snapshots:
 
   ansis@4.3.1: {}
 
+  appwrite@25.2.0:
+    dependencies:
+      json-bigint: 1.0.0
+
   argparse@2.0.1: {}
 
   aria-query@5.3.0:
@@ -3145,6 +3162,8 @@ snapshots:
   bidi-js@1.0.3:
     dependencies:
       require-from-string: 2.0.2
+
+  bignumber.js@9.3.1: {}
 
   brace-expansion@5.0.6:
     dependencies:
@@ -3468,6 +3487,10 @@ snapshots:
       - supports-color
 
   jsesc@3.1.0: {}
+
+  json-bigint@1.0.0:
+    dependencies:
+      bignumber.js: 9.3.1
 
   json-buffer@3.0.1: {}
 

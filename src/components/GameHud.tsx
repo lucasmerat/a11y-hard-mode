@@ -11,7 +11,6 @@ export default function GameHud() {
 
   const frictionEvents = gameContext.state[activeLevel].frictionEvents;
 
-
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-bold">{LEVEL_TITLES[activeLevel]}</h1>
