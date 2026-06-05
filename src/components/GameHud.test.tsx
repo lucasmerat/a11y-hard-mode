@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import GameHud from './GameHud'
-import { GameProvider } from '../context/game/useGame'
+import { GameProvider } from '../context/game/GameProvider'
 import { useMatches } from '@tanstack/react-router'
 
 vi.mock('@tanstack/react-router', () => ({
@@ -33,7 +33,7 @@ describe('GameHud Component', () => {
         <GameHud />
       </GameProvider>
     )
-    expect(screen.getByText(/Time spent on Level 1/i)).toBeInTheDocument()
+    expect(screen.getByText(/Time spent on level:/i)).toBeInTheDocument()
     expect(screen.getByText(/Misclicks: 0/i)).toBeInTheDocument()
   })
 })

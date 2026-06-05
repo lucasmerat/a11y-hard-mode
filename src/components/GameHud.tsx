@@ -7,9 +7,10 @@ export default function GameHud() {
 
   const activeLevel = gameContext.activeLevel;
 
-  const frictionEvents = activeLevel ? gameContext.state[activeLevel].frictionEvents : 0;
-
   if (!activeLevel) return null
+
+  const frictionEvents = gameContext.state[activeLevel].frictionEvents;
+
 
   return (
     <div className="flex flex-col gap-2">
