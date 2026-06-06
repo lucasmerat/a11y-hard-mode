@@ -7,7 +7,7 @@ export const Route = createFileRoute('/')({
       const completionCount = await getCompletionCount()
       return { completionCount }
     } catch {
-      // Non-fatal — display nothing if the count can't be fetched
+      // Not critical to game — display nothing if the count can't be fetched
       return { completionCount: null }
     }
   },

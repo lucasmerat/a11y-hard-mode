@@ -8,8 +8,6 @@ import {
   APPWRITE_FUNCTION_ID,
 } from '#/lib/constants/appwrite'
 
-// Lazy client so a missing env var only throws at call-time, not at module load,
-// keeping SSR from hard-crashing on pages that don't use these functions.
 function createClient() {
   return new Client()
     .setEndpoint(APPWRITE_ENDPOINT)
@@ -23,10 +21,12 @@ export async function getCompletionCount(): Promise<number> {
     APPWRITE_COLLECTION_ID,
     APPWRITE_DOCUMENT_ID
   )
-  return doc.completions as number
+  return doc.completions
 }
 
 export async function incrementCompletions(): Promise<void> {
   const functions = new Functions(createClient())
-  await functions.createExecution(APPWRITE_FUNCTION_ID)
+  await functions.createExecution({
+    functionId: APPWRITE_FUNCTION_ID,
+  })
 }
