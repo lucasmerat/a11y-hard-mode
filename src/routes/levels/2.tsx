@@ -1,9 +1,10 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
+import Level2SilentWall from '#/components/levels/2/Level2SilentWall'
 
 export const Route = createFileRoute('/levels/2')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div className="flex flex-col"><span>Hello "/levels/2"!</span><Link to="/levels/3">Go to level 3</Link></div>
+  return <Level2SilentWall />
 }

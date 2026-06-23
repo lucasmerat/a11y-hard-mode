@@ -41,7 +41,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-mono antialiased [overflow-wrap:anywhere] flex flex-col min-h-screen bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-[size:4rem_4rem]">
+      <body className="font-mono antialiased wrap-anywhere flex flex-col min-h-screen bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-size-[4rem_4rem]">
         <GameProvider>
           <div className="flex justify-between items-start py-4 px-8">
             <GameHud />

@@ -10,6 +10,7 @@ import WinModal from '#/components/WinModal'
 export default function Level1Parkinson() {
   const { incrementFriction, completeLevel } = useGame()
   const level1Completed = useGame().state.level1.completed
+  const timeElapsed = useGame().state.level1.timeElapsed
 
   const checkboxRef = useRef<HTMLInputElement>(null)
   const quitButtonRef = useRef<HTMLButtonElement>(null)
@@ -72,7 +73,9 @@ export default function Level1Parkinson() {
 
         {level1Completed && <WinModal />}
 
-        <button ref={quitButtonRef} className="pointer-events-auto" onClick={() => completeLevel(LEVELS_IDS.LEVEL_1)}>Complete Level</button>
+        {timeElapsed > 10000 && (
+          <button ref={quitButtonRef} className="pointer-events-auto" onClick={() => completeLevel(LEVELS_IDS.LEVEL_1)}>Complete Level</button>
+        )}
       </div>
     </>
   )
