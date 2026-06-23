@@ -9,7 +9,7 @@ type ParkinsonCursorProps = {
 export default function ParkinsonCursor({ x, y }: ParkinsonCursorProps) {
   return (
     <div
-      className="pointer-events-none fixed z-[100] animate-tremor"
+      className="pointer-events-none fixed z-100 animate-tremor"
       style={{
         left: x,
         top: y,
