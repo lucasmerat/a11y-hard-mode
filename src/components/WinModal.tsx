@@ -100,7 +100,7 @@ export default function WinModal() {
               to="/"
               className="inline-flex items-center gap-2 rounded border border-teal-700 bg-transparent px-6 py-2.5 text-sm text-teal-300 transition-colors hover:bg-teal-900/40 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
             >
-              Back to start
+              See my results →
             </Link>
           )}
         </div>

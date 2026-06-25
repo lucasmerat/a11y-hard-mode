@@ -133,7 +133,7 @@ export default function Level2SilentWall() {
 
       {level2Completed && <WinModal />}
 
-      {timeElapsed > 0 && (
+      {timeElapsed > 40000 && (
         <GiveUpButton onClick={() => completeLevel(LEVELS_IDS.LEVEL_2)} />
       )}
     </div>
