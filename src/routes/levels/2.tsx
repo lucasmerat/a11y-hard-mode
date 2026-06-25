@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import Level2SilentWall from '#/components/levels/2/Level2SilentWall'
+import Level2SilentForm from '#/components/levels/2/Level2SilentForm'
 
 export const Route = createFileRoute('/levels/2')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <Level2SilentWall />
+  return <Level2SilentForm />
 }

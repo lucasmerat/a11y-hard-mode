@@ -3,6 +3,7 @@ import { useGame } from '#/context/game/useGame'
 import { LEVELS_IDS } from '#/lib/constants/levels'
 import { isValidPassword } from '#/lib/validators/level2'
 import WinModal from '#/components/WinModal'
+import GiveUpButton from '#/components/GiveUpButton'
 
 type FormFields = {
   firstName: string
@@ -35,6 +36,7 @@ export default function Level2SilentWall() {
   const level2Completed = useGame().state.level2.completed
   const [fields, setFields] = useState<FormFields>(emptyForm)
   const [submitted, setSubmitted] = useState(false)
+  const timeElapsed = useGame().state.level2.timeElapsed
 
   const valid = isFormValid(fields)
 
@@ -47,6 +49,8 @@ export default function Level2SilentWall() {
       confirmPassword: fields.confirmPassword !== fields.password,
     }
     : null
+
+  const hasAnError = errors && Object.values(errors).some(Boolean)
 
   function handleChange(field: keyof FormFields, value: string) {
     setFields((prev) => ({ ...prev, [field]: value }))
@@ -63,11 +67,11 @@ export default function Level2SilentWall() {
   }
 
   return (
-    <div className="flex w-full max-w-lg flex-col px-4">
+    <div className="flex w-full max-w-xl flex-col px-4">
       <div className="rounded border border-teal-800/60 bg-zinc-950/40 overflow-hidden">
         <div className="border-b border-teal-800/60 px-6 py-4">
           <h1 className="text-xl font-bold text-teal-300">Create Account</h1>
-          <p className="mt-1 text-sm text-zinc-400">Fill in your details to get started.</p>
+          <p className="mt-1 text-sm text-zinc-400">Fill in your details to get started. Easy enough, right?</p>
         </div>
 
         <form onSubmit={handleSubmit} noValidate>
@@ -94,13 +98,9 @@ export default function Level2SilentWall() {
               isError={errors?.email}
             />
 
-            {/*
-              Intentional a11y violation (WCAG 3.3.1):
-              Password requirements (must contain a number + special character) are never stated.
-              On failed submit the border flashes red, but no error text is shown.
-            */}
             <FormField
               label="Password"
+              type="password"
               value={fields.password}
               isError={errors?.password}
               onChange={(v) => handleChange('password', v)}
@@ -108,10 +108,16 @@ export default function Level2SilentWall() {
 
             <FormField
               label="Confirm password"
+              type="password"
               value={fields.confirmPassword}
               onChange={(v) => handleChange('confirmPassword', v)}
               isError={errors?.confirmPassword}
             />
+            {hasAnError && (
+              <p className="text-red-500 text-sm">
+                An error has occured. Please check the fields and try again.
+              </p>
+            )}
           </div>
 
           <div className="border-t border-teal-800/60 px-6 py-4 flex justify-end">
@@ -126,6 +132,10 @@ export default function Level2SilentWall() {
       </div>
 
       {level2Completed && <WinModal />}
+
+      {timeElapsed > 0 && (
+        <GiveUpButton onClick={() => completeLevel(LEVELS_IDS.LEVEL_2)} />
+      )}
     </div>
   )
 }

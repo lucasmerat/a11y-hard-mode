@@ -6,6 +6,7 @@ import { useParkinsonVisualPointer } from '#/hooks/useParkinsonVisualPointer'
 import { level1TermsParagraphs } from '#/lib/constants/level1Terms'
 import { LEVELS_IDS } from '#/lib/constants/levels'
 import WinModal from '#/components/WinModal'
+import GiveUpButton from '#/components/GiveUpButton'
 
 export default function Level1Parkinson() {
   const { incrementFriction, completeLevel } = useGame()
@@ -74,7 +75,7 @@ export default function Level1Parkinson() {
         {level1Completed && <WinModal />}
 
         {timeElapsed > 10000 && (
-          <button ref={quitButtonRef} className="pointer-events-auto" onClick={() => completeLevel(LEVELS_IDS.LEVEL_1)}>Complete Level</button>
+          <GiveUpButton ref={quitButtonRef} onClick={() => completeLevel(LEVELS_IDS.LEVEL_1)} />
         )}
       </div>
     </>

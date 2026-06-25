@@ -52,7 +52,7 @@ export default function WinModal() {
     >
       <div className="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm" aria-hidden />
 
-      <div className="relative w-full max-w-lg rounded-lg border border-teal-800/60 bg-zinc-950 shadow-xl overflow-hidden">
+      <div className="relative w-full max-w-xl rounded-lg border border-teal-800/60 bg-zinc-950 shadow-xl overflow-hidden">
         {/* Header */}
         <div className="px-8 pt-8 pb-4 text-center border-b border-zinc-800">
           <h1 id="win-modal-title" className="text-2xl font-bold text-teal-300">
@@ -70,13 +70,13 @@ export default function WinModal() {
             {/* Reality */}
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-1">Why it matters</p>
-              <p className="text-sm text-zinc-300 italic">{content.reality}</p>
+              <p className="text-sm text-zinc-300">{content.reality}</p>
             </div>
 
             {/* Fix */}
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-1">How to fix it</p>
-              <p className="text-sm text-zinc-300">{content.fix}</p>
+              <p className="pb-4 text-sm text-zinc-300">{content.fix}</p>
               <CodeDiff before={content.codeBefore} after={content.codeAfter} />
             </div>
           </div>
