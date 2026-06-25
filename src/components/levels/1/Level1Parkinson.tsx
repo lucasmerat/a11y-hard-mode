@@ -4,7 +4,7 @@ import ParkinsonCursor from '#/components/levels/1/ParkinsonCursor'
 import { useLevel1ClickHandling } from '#/hooks/useLevel1ClickHandling'
 import { useParkinsonVisualPointer } from '#/hooks/useParkinsonVisualPointer'
 import { level1TermsParagraphs } from '#/lib/constants/level1Terms'
-import { LEVELS_IDS } from '#/lib/constants/levels'
+import { LEVEL_TIME_LIMIT, LEVELS_IDS } from '#/lib/constants/levels'
 import WinModal from '#/components/WinModal'
 import GiveUpButton from '#/components/GiveUpButton'
 
@@ -41,7 +41,7 @@ export default function Level1Parkinson() {
       {!level1Completed && <ParkinsonCursor x={visualPointer.x} y={visualPointer.y} />}
 
       <div className="pointer-events-none flex w-full max-w-2xl flex-col px-4">
-        <div className="flex max-h-[70vh] flex-col overflow-hidden rounded border border-teal-800/60 bg-zinc-950/40">
+        <div className="flex max-h-[60vh] flex-col overflow-hidden rounded border border-teal-800/60 bg-zinc-950/40">
           <h1 className="border-b border-teal-800/60 px-6 py-4 text-xl font-bold text-teal-300">
             Terms of Service
           </h1>
@@ -74,9 +74,9 @@ export default function Level1Parkinson() {
 
         {level1Completed && <WinModal />}
 
-        {timeElapsed > 10000 && (
-          <GiveUpButton ref={quitButtonRef} onClick={() => completeLevel(LEVELS_IDS.LEVEL_1)} />
-        )}
+        <div className="mt-6 h-10 flex items-center justify-center">
+          {timeElapsed > LEVEL_TIME_LIMIT && <GiveUpButton ref={quitButtonRef} onClick={() => completeLevel(LEVELS_IDS.LEVEL_1)} />}
+        </div>
       </div>
     </>
   )

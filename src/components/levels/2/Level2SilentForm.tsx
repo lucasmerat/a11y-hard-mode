@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useGame } from '#/context/game/useGame'
-import { LEVELS_IDS } from '#/lib/constants/levels'
+import { LEVEL_TIME_LIMIT, LEVELS_IDS } from '#/lib/constants/levels'
 import { isValidPassword } from '#/lib/validators/level2'
 import WinModal from '#/components/WinModal'
 import GiveUpButton from '#/components/GiveUpButton'
@@ -132,10 +132,10 @@ export default function Level2SilentWall() {
       </div>
 
       {level2Completed && <WinModal />}
+      <div className="mt-6 h-10 flex items-center justify-center">
+        {timeElapsed > LEVEL_TIME_LIMIT && <GiveUpButton onClick={() => completeLevel(LEVELS_IDS.LEVEL_2)} />}
+      </div>
 
-      {timeElapsed > 40000 && (
-        <GiveUpButton onClick={() => completeLevel(LEVELS_IDS.LEVEL_2)} />
-      )}
     </div>
   )
 }

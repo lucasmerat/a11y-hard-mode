@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useGame } from '#/context/game/useGame'
-import { LEVELS_IDS } from '#/lib/constants/levels'
+import { LEVEL_TIME_LIMIT, LEVELS_IDS } from '#/lib/constants/levels'
 import WinModal from '#/components/WinModal'
 import GiveUpButton from '#/components/GiveUpButton'
 import clsx from 'clsx'
@@ -140,9 +140,9 @@ export default function Level3AnonymousActions() {
 
       {level3Completed && <WinModal />}
 
-      {timeElapsed > 40000 && (
-        <GiveUpButton onClick={() => completeLevel(LEVELS_IDS.LEVEL_3)} />
-      )}
+      <div className="mt-6 h-10 flex items-center justify-center">
+        {timeElapsed > LEVEL_TIME_LIMIT && <GiveUpButton onClick={() => completeLevel(LEVELS_IDS.LEVEL_3)} />}
+      </div>
     </div>
   )
 }

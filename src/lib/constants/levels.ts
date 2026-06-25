@@ -10,3 +10,5 @@ export const NEXT_LEVEL_ROUTES = {
   level2: '/levels/3',
   level3: null,
 } as const;
+
+export const LEVEL_TIME_LIMIT = 30000;

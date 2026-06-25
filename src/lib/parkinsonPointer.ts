@@ -1,11 +1,11 @@
 export type Point = { x: number; y: number }
 
 /** Fake cursor is within this many pixels of real cursor */
-export const PARKINSON_MAX_OFFSET = 50
+export const PARKINSON_MAX_OFFSET = 22
 /** Shake strength when the mouse moves. */
-export const PARKINSON_MOVE_IMPULSE = 25
+export const PARKINSON_MOVE_IMPULSE = 12
 /** Shake strength when not moving mouse. */
-export const PARKINSON_RESTING_DRIFT = 12
+export const PARKINSON_RESTING_DRIFT = 8
 
 export function randomTremorStep(impulse: number): Point {
   return {
