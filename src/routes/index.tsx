@@ -27,7 +27,7 @@ function Landing() {
       <h1 className="display-title mb-10 text-4xl font-bold sm:text-5xl">
         a11y hard mode
       </h1>
-      <p className="mb-10 max-w-[44rem] text-lg text-center">
+      <p className="mb-10 max-w-176 text-lg text-center">
         This is what the web feels like when it's not built for you. Three levels. Three barriers. Can you reach the end?
       </p>
       {completionLabel && (

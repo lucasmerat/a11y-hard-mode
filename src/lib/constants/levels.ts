@@ -4,11 +4,10 @@ export const LEVELS_IDS = {
   LEVEL_3: 'level3',
 } as const;
 
-/** Route to navigate to after completing each level. null = game complete. */
 export const NEXT_LEVEL_ROUTES = {
   level1: '/levels/2',
   level2: '/levels/3',
-  level3: null,
+  level3: '/results',
 } as const;
 
 export const LEVEL_TIME_LIMIT = 30000;

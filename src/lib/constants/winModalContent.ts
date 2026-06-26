@@ -17,26 +17,26 @@ export const WIN_MODAL_CONTENT = {
 </label>`,
   },
   level2: {
-    statLine: (ms: number, attempts: number) =>
-      `It took you ${formatTime(ms)} to submit a form. You hit submit ${attempts} time${attempts === 1 ? '' : 's'}.`,
+    statLine: (ms: number, resends: number) =>
+      `It took you ${formatTime(ms)} to verify your email. You needed ${resends} code resend${resends === 1 ? '' : 's'}.`,
     reality:
-      'When a form silently rejects input, users with cognitive disabilities, anxiety, or low digital literacy are left completely guessing. They assume they did something wrong — but have no idea what.',
-    fix: 'Use aria-live="polite" regions to announce validation errors the moment they are relevant. Requirements should be stated upfront, and errors must explain exactly what to fix.',
-    codeBefore: `<!-- ❌ Before: submit fails silently, no error text -->
-<input type="password" />
-<!-- nothing announced, no requirements shown -->`,
-    codeAfter: `<!-- ✅ After: requirements upfront + live error feedback -->
-<p id="pw-hint">Must contain a number and a special character.</p>
-<input type="password" aria-describedby="pw-hint pw-error" />
-<p id="pw-error" role="alert" aria-live="polite">
-  <!-- filled by JS when validation fails -->
-</p>`,
+      'Time limits on verification codes punish users who need longer to read, remember, or type — especially people with cognitive disabilities, anxiety, or motor difficulties.',
+    fix: 'Let users extend or turn off time limits when timing is not essential. Make them sufficiently long when timing is essential. Give users enough time to read toasts before they auto-dismiss. Warn before expiry with aria-live regions.',
+    codeBefore: `<!-- ❌ Before: code in auto-dismiss toast + hard timeout -->
+<div role="status" class="toast-auto-hide">Code: K7mP2xQn</div>
+<input maxlength="8" />
+<!-- no extend, no warning -->`,
+    codeAfter: `<!-- ✅ After: persistent code + adjustable timer -->
+<p id="otp-code" aria-live="polite">Your code: K7mP2xQn</p>
+<input aria-describedby="otp-code otp-timer" />
+<button type="button">Extend time</button>
+<p id="otp-timer" role="status" aria-live="polite">2:00 remaining</p>`,
   },
   level3: {
     statLine: (ms: number, destructions: number) =>
-      `It took you ${formatTime(ms)} to save your pledge. Your text was deleted ${destructions} time${destructions === 1 ? '' : 's'}.`,
+      `It took you ${formatTime(ms)} to save your pledge. You clicked the wrong button ${destructions} time${destructions === 1 ? '' : 's'}.`,
     reality:
-      'Screen reader and keyboard users depend entirely on accessible names to understand controls. An icon-only button with no label is indistinguishable from any other button — or from nothing at all.',
+      'Screen reader and keyboard users depend entirely on accessible names to understand controls. Without them they are left completely guessing. An icon-only button with no label is indistinguishable from any other button — or from nothing at all.',
     fix: 'Every interactive element needs an accessible name. Add aria-label to icon-only buttons, or pair the icon with visible text and aria-hidden="true" on the SVG.',
     codeBefore: `<!-- ❌ Before: icon-only button, no accessible name -->
 <button>

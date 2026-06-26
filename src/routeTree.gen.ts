@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResultsRouteImport } from './routes/results'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Levels3RouteImport } from './routes/levels/3'
 import { Route as Levels2RouteImport } from './routes/levels/2'
 import { Route as Levels1RouteImport } from './routes/levels/1'
 
+const ResultsRoute = ResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const Levels1Route = Levels1RouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/results': typeof ResultsRoute
   '/levels/1': typeof Levels1Route
   '/levels/2': typeof Levels2Route
   '/levels/3': typeof Levels3Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/results': typeof ResultsRoute
   '/levels/1': typeof Levels1Route
   '/levels/2': typeof Levels2Route
   '/levels/3': typeof Levels3Route
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/results': typeof ResultsRoute
   '/levels/1': typeof Levels1Route
   '/levels/2': typeof Levels2Route
   '/levels/3': typeof Levels3Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/levels/1' | '/levels/2' | '/levels/3'
+  fullPaths: '/' | '/results' | '/levels/1' | '/levels/2' | '/levels/3'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/levels/1' | '/levels/2' | '/levels/3'
-  id: '__root__' | '/' | '/levels/1' | '/levels/2' | '/levels/3'
+  to: '/' | '/results' | '/levels/1' | '/levels/2' | '/levels/3'
+  id: '__root__' | '/' | '/results' | '/levels/1' | '/levels/2' | '/levels/3'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ResultsRoute: typeof ResultsRoute
   Levels1Route: typeof Levels1Route
   Levels2Route: typeof Levels2Route
   Levels3Route: typeof Levels3Route
@@ -71,6 +81,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/results': {
+      id: '/results'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ResultsRoute: ResultsRoute,
   Levels1Route: Levels1Route,
   Levels2Route: Levels2Route,
   Levels3Route: Levels3Route,

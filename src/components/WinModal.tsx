@@ -86,23 +86,13 @@ export default function WinModal() {
 
         {/* Footer */}
         <div className="px-8 pb-8 pt-2 flex justify-center border-t border-zinc-800">
-          {nextRoute ? (
-            <Link
-              ref={linkRef}
-              to={nextRoute}
-              className="inline-flex items-center gap-2 rounded border border-teal-700 bg-transparent px-6 py-2.5 text-sm text-teal-300 transition-colors hover:bg-teal-900/40 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
-            >
-              Next Level →
-            </Link>
-          ) : (
-            <Link
-              ref={linkRef}
-              to="/"
-              className="inline-flex items-center gap-2 rounded border border-teal-700 bg-transparent px-6 py-2.5 text-sm text-teal-300 transition-colors hover:bg-teal-900/40 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
-            >
-              See my results →
-            </Link>
-          )}
+          <Link
+            ref={linkRef}
+            to={nextRoute}
+            className="inline-flex items-center gap-2 rounded border border-teal-700 bg-transparent px-6 py-2.5 text-sm text-teal-300 transition-colors hover:bg-teal-900/40 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
+          >
+            {nextRoute === '/results' ? 'See my results →' : 'Next Level →'}
+          </Link>
         </div>
       </div>
     </div>
